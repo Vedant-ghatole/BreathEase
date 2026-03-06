@@ -1,0 +1,65 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { Send, Sun, Moon } from "lucide-react";
+
+export default function BreathEase() {
+  const [messages, setMessages] = useState([
+    { text: "Welcome to BreathEase! How can I help you today?", sender: "bot" }
+  ]);
+  const [input, setInput] = useState("");
+  const [darkMode, setDarkMode] = useState(true);
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+    const newMessages = [...messages, { text: input, sender: "user" }];
+    setMessages(newMessages);
+    setInput("");
+    setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        { text: "Thank you for your input. Let’s take a deep breath together.", sender: "bot" }
+      ]);
+    }, 1000);
+  };
+
+  return (
+    <div className={`flex flex-col items-center justify-center min-h-screen p-4 transition-all ${darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"}`}>
+      <div className="absolute top-4 right-4">
+        <Button onClick={() => setDarkMode(!darkMode)} className="p-2 rounded-full bg-gray-600 hover:bg-gray-700 text-white">
+          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+        </Button>
+      </div>
+      <Card className={`w-full max-w-md shadow-lg rounded-2xl overflow-hidden transition-all ${darkMode ? "bg-gray-800 border border-gray-700" : "bg-white border border-gray-300"}`}>
+        <CardContent className="p-4 space-y-3">
+          <h1 className={`text-2xl font-semibold text-center ${darkMode ? "text-green-400" : "text-green-600"}`}>BreathEase</h1>
+          <div className={`h-64 overflow-y-auto p-2 border rounded-lg transition-all ${darkMode ? "bg-gray-700 text-white" : "bg-gray-200 text-black"}`}>
+            {messages.map((msg, index) => (
+              <motion.div
+                key={index}
+                className={`p-2 rounded-lg ${msg.sender === "bot" ? (darkMode ? "bg-green-600 text-left" : "bg-green-400 text-left") : (darkMode ? "bg-blue-600 text-right" : "bg-blue-400 text-right")}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                {msg.text}
+              </motion.div>
+            ))}
+          </div>
+          <div className="flex items-center space-x-2">
+            <Input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type a message..."
+              className={`flex-1 transition-all ${darkMode ? "bg-gray-600 text-white placeholder-gray-400 border-gray-500" : "bg-gray-100 text-black placeholder-gray-600 border-gray-400"}`}
+            />
+            <Button onClick={handleSend} className="bg-green-500 hover:bg-green-600 text-white">
+              <Send size={18} />
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

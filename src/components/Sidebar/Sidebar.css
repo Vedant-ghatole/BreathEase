@@ -1,0 +1,111 @@
+.sidebar {
+  min-height: 100vh;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--sidebar-bg);
+  padding: 25px 15px;
+  border-right: 1px solid var(--glass-border);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05); /* Slight shadow to separate from Main */
+  transition: all 0.4s ease;
+  z-index: 10;
+  width: 80px; /* Collapsed width */
+}
+
+/* Increase width when expanded */
+.sidebar:has(.categories-container) {
+  width: 300px; 
+}
+
+.sidebar img {
+  width: 20px;
+}
+
+.sidebar .menu {
+  display: block;
+  margin-left: 10px;
+  cursor: pointer;
+  filter: var(--icon-filter, none);
+}
+
+.sidebar .new-chat {
+  margin-top: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  background-color: var(--sidebar-hover);
+  border-radius: 50px;
+  font-size: 14px;
+  color: var(--text-color);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sidebar .new-chat:hover {
+  background-color: var(--hover-bg);
+  transform: scale(1.02);
+}
+
+/* Categorization Styles */
+.categories-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.sidebar-category {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 15px;
+}
+
+.sidebar-category:last-child {
+  border-bottom: none;
+}
+
+.category-title {
+  margin-bottom: 10px;
+  color: var(--accent-color);
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-left: 10px;
+}
+
+.category-item {
+  display: flex;
+  align-items: center; /* keep vertical alignment centered if image and text have different heights */
+  gap: 12px; /* space between icon and text */
+  padding: 10px 15px;
+  border-radius: 12px;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-item p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* For smaller screens/narrow sidebar */
+  font-size: 15px;
+}
+
+.category-item:hover {
+  background-color: var(--sidebar-hover);
+  padding-left: 20px; /* Slight nudge effect */
+  color: var(--accent-color);
+}
+
+.sidebar .bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .bottom-item {
+  cursor: pointer;
+}

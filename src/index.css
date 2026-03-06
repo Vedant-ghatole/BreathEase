@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Medical Tech Light Theme */
+  --bg-color: #f0fdfa; /* Teal 50 */
+  --text-color: #0f172a;
+  --card-bg: #ffffff;
+  --hover-bg: #ccfbf1; /* Teal 100 */
+  --accent-color: #0d9488; /* Teal 600 */
+  --sidebar-bg: #ffffff;
+  --sidebar-hover: #e0f2fe; /* Sky 100 */
+
+  /* Glassmorphism settings */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(13, 148, 136, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(13, 148, 136, 0.15);
+  --transition-speed: 0.3s;
+}
+
+[data-theme="dark"] {
+  /* Medical Tech Dark Theme */
+  --bg-color: #020617; /* Slate 950 */
+  --text-color: #f8fafc;
+  --card-bg: #0f172a; /* Slate 900 */
+  --hover-bg: #1e293b; /* Slate 800 */
+  --accent-color: #2dd4bf; /* Teal 400 */
+  --sidebar-bg: #020617;
+  --sidebar-hover: #0f172a;
+
+  --glass-bg: rgba(15, 23, 42, 0.7);
+  --glass-border: rgba(45, 212, 191, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(45, 212, 191, 0.15);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+}
